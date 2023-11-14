@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
+export default function CaseChanger()  {
 
-export default function CaseChanger() {
+    const [text, setText] = useState('');
 
     const toUpper = () => {
 
@@ -31,7 +32,6 @@ export default function CaseChanger() {
         setText(event.target.value);
     }
 
-    const [text, setText] = useState('');
     return (
 
         <div className='container my-5'>
