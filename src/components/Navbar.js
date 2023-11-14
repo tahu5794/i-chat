@@ -1,57 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 
 export default function Navbar(props) {
 
-    const [theme, setTheme] = useState({
-        mode: "light",
-        navClass: "navbar navbar-expand-md navbar-light bg-light",
-        bgColor: "bg-light",
-        color: "text-dark",
-        btn: "btn-light",
-        icon: "bi bi-moon-stars",
-        dropDownMenu : ""
-    });
-
-    const [themeBtn, setThemeBtn] = useState('Enable Dark Mode');
-    const toggleTheme = () => {
-
-        if (theme?.mode === 'light') {
-
-            setTheme({
-                mode: "dark",
-                navClass: "navbar navbar-expand-md navbar-dark bg-dark bg-gradient",
-                bgColor: "bg-dark",
-                color: "text-light",
-                btn: "btn-dark",
-                icon: "bi bi-moon-stars-fill",
-                dropDownMenu : "dropdown-menu-dark"
-            });
-
-            setThemeBtn('Disable Dark Mode')
-
-        } else {
-
-            setTheme({
-                mode: "light",
-                navClass: "navbar navbar-expand-md navbar-light bg-light",
-                bgColor: "bg-light",
-                btn: "btn-light",
-                icon: "bi bi-moon-stars",
-                dropDownMenu : ""
-            });
-
-            setThemeBtn('Enable Dark Mode')
-        }
-
-    }
+    
 
     return (
 
-        <nav className={theme?.navClass}>
+        <nav className={props?.data?.navClass}>
             <div className="container-fluid">
 
-                <a className="navbar-brand fw-bold" href="/"><span>{props?.title} <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-chat-quote text-info" viewBox="0 0 16 16">
+                <a className="navbar-brand fw-bold" href="/"><span>{props?.title} <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-chat-quote text-secondary" viewBox="0 0 16 16">
                     <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
                     <path d="M7.066 6.76A1.665 1.665 0 0 0 4 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z" />
                 </svg></span></a>
@@ -77,7 +36,7 @@ export default function Navbar(props) {
                                 More
                             </span>
 
-                            <ul className={`dropdown-menu ${theme.dropDownMenu}`} aria-labelledby="navbarDropdown">
+                            <ul className={`dropdown-menu ${props?.data?.dropDownMenu}`} aria-labelledby="navbarDropdown">
 
                                 <li><a className="dropdown-item d-flex justify-content-between" href="/">Settings <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-gear-fill" viewBox="0 0 19 19">
                                     <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
@@ -94,9 +53,9 @@ export default function Navbar(props) {
                         </li>
                         <li className="nav-item" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-custom-class="custom-tooltip"
-                            title={themeBtn}>
-                            <span className={`nav-link active ${theme.color}`} type='button' onClick={toggleTheme}>
-                                <i className={theme?.icon}></i>
+                            title={props?.data?.themeButton}>
+                            <span className={`nav-link active ${props?.data?.color}`} type='button' onClick={props?.toggleTheme}>
+                                <i className={props?.data?.icon}></i>
                             </span>
                         </li>
 

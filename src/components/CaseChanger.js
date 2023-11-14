@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function CaseChanger()  {
+export default function CaseChanger(props)  {
 
     const [text, setText] = useState('');
 
@@ -38,9 +38,9 @@ export default function CaseChanger()  {
 
             <div className='container'>
 
-                <div className="mb-3 text-light">
+                <div className={`mb-3 ${props?.data?.mode === 'dark' ? 'text-light' : 'text-dark'}`}>
                     <label htmlFor="textArea" className="form-label"><h1>Case Changer</h1></label>
-                    <textarea className="form-control bg-transparent bg-gradient text-light" min-width="400px" onChange={handleOnChange} value={text} id="textArea" rows="8" placeholder='Type Something...'></textarea>
+                    <textarea className={`form-control bg-transparent bg-gradient ${props?.data?.mode === 'dark' ? 'text-light' : 'text-dark'}`} onChange={handleOnChange} value={text} id="textArea" rows="8" placeholder='Type Something...'></textarea>
                 </div>
                 <div className="mb-3 d-flex justify-content-center">
                     <button className="btn btn-md btn-success mx-1" onClick={toUpper}>Convert To UPPERCASE</button>
@@ -49,7 +49,7 @@ export default function CaseChanger()  {
 
             </div>
 
-            <div className="container text-light my-5">
+            <div className={`container my-5`}>
 
                 <h1>Analytics</h1>
                 <p><b>{text?.length ? (text.trim(" ")).split(" ")?.length : 0}</b> words, <b>{text?.length}</b>   characters.</p>
